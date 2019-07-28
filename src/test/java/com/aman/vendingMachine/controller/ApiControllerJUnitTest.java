@@ -52,7 +52,7 @@ public class ApiControllerJUnitTest {
         VendingMachineRequest requestBody = new VendingMachineRequest();
         requestBody.setType("test");
         RequestBuilder request = MockMvcRequestBuilders
-                .post("/deposit")
+                .post("/api/deposit")
                 .content(ApiTestUtility.asJsonString(requestBody))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
@@ -71,7 +71,7 @@ public class ApiControllerJUnitTest {
         VendingMachineRequest requestBody = new VendingMachineRequest();
         requestBody.setType("test");
         RequestBuilder request = MockMvcRequestBuilders
-                .post("/deposit")
+                .post("/api/deposit")
                 .content(ApiTestUtility.asJsonString(requestBody))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
@@ -90,7 +90,7 @@ public class ApiControllerJUnitTest {
         VendingMachineRequest requestBody = new VendingMachineRequest();
         requestBody.setType("test");
         RequestBuilder request = MockMvcRequestBuilders
-                .post("/deposit")
+                .post("/api/deposit")
                 .content(ApiTestUtility.asJsonString(requestBody))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
@@ -110,7 +110,7 @@ public class ApiControllerJUnitTest {
         VendingMachineRequest requestBody = new VendingMachineRequest();
         requestBody.setType("test");
         RequestBuilder request = MockMvcRequestBuilders
-                .post("/withdraw")
+                .post("/api/withdraw")
                 .content(ApiTestUtility.asJsonString(requestBody))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
@@ -130,7 +130,7 @@ public class ApiControllerJUnitTest {
         VendingMachineRequest requestBody = new VendingMachineRequest();
         requestBody.setType("test");
         RequestBuilder request = MockMvcRequestBuilders
-                .post("/withdraw")
+                .post("/api/withdraw")
                 .content(ApiTestUtility.asJsonString(requestBody))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON);
@@ -148,7 +148,7 @@ public class ApiControllerJUnitTest {
         List<Item> supportedItems = Arrays.asList(new Candy(), new Toy());
         when(service.getAllSupportedItems()).thenReturn(supportedItems);
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/getlist")
+                .get("/api/getlist")
                 .accept(MediaType.APPLICATION_JSON);
 
         

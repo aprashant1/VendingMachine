@@ -23,22 +23,22 @@ public class VendingApplicationIntegrationTests {
 
     @Test
     public void contextLoads() {
-        VendingMachineResponse candyResponse = this.testRestTemplate.postForObject("/deposit", new VendingMachineRequest("Candy"), VendingMachineResponse.class);
+        VendingMachineResponse candyResponse = this.testRestTemplate.postForObject("/api/deposit", new VendingMachineRequest("Candy"), VendingMachineResponse.class);
         Assert.assertEquals("OK", candyResponse.getStatus());
 
-        VendingMachineResponse testResponse = this.testRestTemplate.postForObject("/deposit", new VendingMachineRequest("Soap"), VendingMachineResponse.class);
+        VendingMachineResponse testResponse = this.testRestTemplate.postForObject("/api/deposit", new VendingMachineRequest("Soap"), VendingMachineResponse.class);
         Assert.assertEquals("Item not supported", testResponse.getStatus());
 
-        VendingMachineResponse sodaResponse = this.testRestTemplate.postForObject("/deposit", new VendingMachineRequest("Soda"), VendingMachineResponse.class);
+        VendingMachineResponse sodaResponse = this.testRestTemplate.postForObject("/api/deposit", new VendingMachineRequest("Soda"), VendingMachineResponse.class);
         Assert.assertEquals("OK", sodaResponse.getStatus());
 
-        VendingMachineResponse candyMaxedOutResponse = this.testRestTemplate.postForObject("/deposit", new VendingMachineRequest("Candy"), VendingMachineResponse.class);
+        VendingMachineResponse candyMaxedOutResponse = this.testRestTemplate.postForObject("/api/deposit", new VendingMachineRequest("Candy"), VendingMachineResponse.class);
         Assert.assertEquals("Candy can't be added. Queue is at max, items: 1", candyMaxedOutResponse.getStatus());
 
-        VendingMachineResponse candywithdrawResponse = this.testRestTemplate.postForObject("/withdraw", new VendingMachineRequest("Candy"), VendingMachineResponse.class);
+        VendingMachineResponse candywithdrawResponse = this.testRestTemplate.postForObject("/api/withdraw", new VendingMachineRequest("Candy"), VendingMachineResponse.class);
         Assert.assertEquals("OK", candywithdrawResponse.getStatus());
 
-        List<Item> getSupportedItems = this.testRestTemplate.getForObject("/getlist", List.class);
+        List<Item> getSupportedItems = this.testRestTemplate.getForObject("/api/getlist", List.class);
         Assert.assertEquals(3, getSupportedItems.size());
     }
 
