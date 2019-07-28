@@ -1,7 +1,7 @@
 # VendingMachine
 Sample API's using springBoot
 
-##PROBLEM STATEMENT
+## PROBLEM STATEMENT
 ```
 ï»¿testTaskSSE
 Create a new project on Github with the implementation of the assignment below.
