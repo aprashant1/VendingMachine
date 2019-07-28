@@ -37,6 +37,9 @@ public class VendingApplicationIntegrationTests {
 
         VendingMachineResponse candywithdrawResponse = this.testRestTemplate.postForObject("/api/withdraw", new VendingMachineRequest("Candy"), VendingMachineResponse.class);
         Assert.assertEquals("OK", candywithdrawResponse.getStatus());
+        
+        VendingMachineResponse noCandywithdrawResponse = this.testRestTemplate.postForObject("/api/withdraw", new VendingMachineRequest("Candy"), VendingMachineResponse.class);
+        Assert.assertEquals("N/A", noCandywithdrawResponse.getStatus());
 
         List<Item> getSupportedItems = this.testRestTemplate.getForObject("/api/getlist", List.class);
         Assert.assertEquals(3, getSupportedItems.size());
