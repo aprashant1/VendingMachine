@@ -16,13 +16,10 @@ import org.springframework.stereotype.Component;
  * @author aprashant
  */
 @Component
-@ConfigurationProperties(prefix = "item.soda")
 public class Soda implements Item {
 
     private final int id = 2;
     private final String type = "Soda";
-    @JsonIgnore
-    private int capacity;
 
     @Override
     public String getType() {
@@ -32,14 +29,6 @@ public class Soda implements Item {
     @Override
     public int getId() {
         return this.id;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 
     @Override
