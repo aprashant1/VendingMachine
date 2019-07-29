@@ -92,6 +92,6 @@ public class VendingMachineServiceImpl implements VendingMachineService {
     }
 
     private ModifiedVendingInventory<Item> getInventoryRac(List<ModifiedVendingInventory<Item>> vendingMachineInventory, Item item) {
-        return vendingMachineInventory.stream().filter(element -> element.equals(item)).findFirst().get();
+        return vendingMachineInventory.stream().filter(element -> element.getItem().equals(item)).findFirst().get();
     }
 }

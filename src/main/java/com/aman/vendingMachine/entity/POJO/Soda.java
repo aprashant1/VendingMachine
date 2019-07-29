@@ -6,9 +6,7 @@
 package com.aman.vendingMachine.entity.POJO;
 
 import com.aman.vendingMachine.entity.Item;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
