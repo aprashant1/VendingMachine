@@ -10,13 +10,13 @@ import com.aman.vendingMachine.exception.ItemMaxedException;
 import com.aman.vendingMachine.entity.Item;
 import com.aman.vendingMachine.entity.ItemResolver;
 import com.aman.vendingMachine.entity.VendingMachineResponse;
+import com.aman.vendingMachine.storage.ModifiedVendingInventory;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.aman.vendingMachine.storage.Inventory;
 
 /**
  *
@@ -26,15 +26,12 @@ import com.aman.vendingMachine.storage.Inventory;
 public class VendingMachineServiceImpl implements VendingMachineService {
 
     @Autowired
-    private Inventory<Item> vendingInventory;
+    private List<ModifiedVendingInventory<Item>> vendingMachineInventory;
 
     @Override
     public VendingMachineResponse addItem(Item item) throws ItemMaxedException {
-        if (vendingInventory.getQuantity(item) < item.getCapacity()) {
-            vendingInventory.add(item);
-        } else {
-            throw new ItemMaxedException(item.getType() + " can't be added. Queue is at max, items: " + item.getCapacity());
-        }
+       ModifiedVendingInventory<Item> itemInventory =  getInventoryRac(vendingMachineInventory, item);       
+       itemInventory.add(item);
         return new VendingMachineResponse(item.getId(), "OK");
     }
 
@@ -59,9 +56,9 @@ public class VendingMachineServiceImpl implements VendingMachineService {
     @Override
     public VendingMachineResponse withDrawItem(Item item) {
         String responseMessage;
-        if (vendingInventory.hasItem(item)) {
-            vendingInventory.withdraw(item);
-            responseMessage = "OK";
+        ModifiedVendingInventory<Item> itemInventory =  getInventoryRac(vendingMachineInventory, item);       
+        if (itemInventory.withdraw(item)) {
+                responseMessage = "OK";
         } else {
             responseMessage = "N/A";
         }
@@ -94,13 +91,7 @@ public class VendingMachineServiceImpl implements VendingMachineService {
         return supportedItems;
     }
 
-    @Override
-    public List<Item> getAllAvailableItems() {
-        List<Item> availableItems = ItemResolver.resolverByName.entrySet()
-                .stream().map(Entry::getValue)
-                .filter(item -> vendingInventory.hasItem(item))
-                .collect(Collectors.toList());
-        return availableItems;
+    private ModifiedVendingInventory<Item> getInventoryRac(List<ModifiedVendingInventory<Item>> vendingMachineInventory, Item item) {
+        return vendingMachineInventory.stream().filter(element -> element.getItem().equals(item)).findFirst().get();
     }
-
 }

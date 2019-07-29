@@ -6,9 +6,7 @@
 package com.aman.vendingMachine.entity.POJO;
 
 import com.aman.vendingMachine.entity.Item;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,13 +14,10 @@ import org.springframework.stereotype.Component;
  * @author aprashant
  */
 @Component
-@ConfigurationProperties(prefix = "item.toy")
 public class Toy implements Item {
 
     private final int id = 3;
     private final String type = "Toy";
-    @JsonIgnore
-    private int capacity;
 
     @Override
     public String getType() {
@@ -33,15 +28,7 @@ public class Toy implements Item {
     public int getId() {
         return this.id;
     }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 5;

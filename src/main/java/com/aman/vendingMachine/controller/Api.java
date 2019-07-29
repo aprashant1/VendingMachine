@@ -46,9 +46,4 @@ public class Api {
     public ResponseEntity<List<Item>> supportedItems() {
       return ResponseEntity.ok().body(service.getAllSupportedItems());
     }
-    
-    @GetMapping("/getAvailablelist")
-    public ResponseEntity<List<Item>> availableItems() {
-      return ResponseEntity.ok().body(service.getAllAvailableItems());
-    }
 }

@@ -13,6 +13,5 @@ public interface Item {
 
     String getType();
     int getId();
-    int getCapacity();
 
 }

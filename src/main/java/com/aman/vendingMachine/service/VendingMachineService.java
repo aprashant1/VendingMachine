@@ -24,5 +24,5 @@ public interface VendingMachineService {
     VendingMachineResponse withDrawItem(String itemType) throws ItemNotSupportedException;
     VendingMachineResponse withDrawItem(int itemId) throws ItemNotSupportedException;
     List<Item> getAllSupportedItems();
-    List<Item> getAllAvailableItems();
+//    List<Item> getAllAvailableItems();
 }
