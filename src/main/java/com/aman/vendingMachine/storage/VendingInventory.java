@@ -13,6 +13,16 @@ import org.springframework.stereotype.Repository;
  *
  * @author aprashant
  */
+
+/**
+ * 
+ * NOTE CONCURRENCY ISSUE: https://github.com/aprashant1/VendingMachine/issues/4
+ * Assumption:
+ * This should not be a concern, as this code is for vending Machine and 
+ * only one user would be accessing these API at any given instance
+ * 
+ * 
+ */
 @Repository
 public class VendingInventory<T> implements Inventory<T> {
 
