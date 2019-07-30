@@ -13,6 +13,15 @@ import com.aman.vendingMachine.exception.ItemMaxedException;
  * @author aprashant
  * @param <T>
  */
+/**
+ * 
+ * NOTE CONCURRENCY ISSUE: https://github.com/aprashant1/VendingMachine/issues/4
+ * Assumption:
+ * This should not be a concern, as this code is for vending Machine and 
+ * only one user would be accessing these API at any given instance
+ * 
+ * 
+ */
 public class ModifiedVendingInventoryImpl<T extends Item> implements ModifiedVendingInventory<T> {
     
     private T item;
